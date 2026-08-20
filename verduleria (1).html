@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Huerta de Doña Rosa — Verdulería</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --verde-oscuro:#243821;
+    --verde-hoja:#5C8A3A;
+    --verde-claro:#B9CDA1;
+    --tomate:#C1440E;
+    --zanahoria:#DE8A24;
+    --crema:#F3EDDC;
+    --papel:#FBF6E9;
+    --carbon:#231F18;
+    --twine:#B99B6B;
+    --sombra: rgba(36,56,33,0.14);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--crema);
+    color:var(--carbon);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.5;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    color:var(--verde-oscuro);
+    margin:0;
+  }
+  .tag-font{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+  a{color:inherit;}
+  button{font-family:inherit;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* ---------- layout helpers ---------- */
+  .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+  section{padding:76px 0;}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(243,237,220,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(36,56,33,0.12);
+  }
+  .headbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px; max-width:1120px; margin:0 auto;
+  }
+  .logo{display:flex; align-items:center; gap:10px;}
+  .logo svg{width:36px; height:36px;}
+  .logo-text{font-family:'Fraunces', serif; font-weight:600; font-size:20px; color:var(--verde-oscuro); line-height:1.1;}
+  .logo-text span{display:block; font-family:'Work Sans',sans-serif; font-weight:400; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--verde-hoja);}
+  nav{display:flex; align-items:center; gap:28px;}
+  nav a{
+    font-size:14px; text-decoration:none; color:var(--carbon);
+    font-weight:500; position:relative; padding-bottom:2px;
+  }
+  nav a:hover{color:var(--verde-hoja);}
+  .cart-btn{
+    display:flex; align-items:center; gap:8px;
+    background:var(--verde-oscuro); color:var(--papel);
+    border:none; border-radius:999px; padding:10px 18px 10px 14px;
+    cursor:pointer; font-size:14px; font-weight:500;
+  }
+  .cart-btn:hover{background:#1b2b19;}
+  .cart-count{
+    background:var(--tomate); color:#fff; border-radius:999px;
+    min-width:20px; height:20px; display:flex; align-items:center; justify-content:center;
+    font-size:11px; font-weight:600; padding:0 5px;
+  }
+  .cart-count.bump{animation:bump 0.35s ease;}
+  @keyframes bump{ 0%{transform:scale(1);} 40%{transform:scale(1.35);} 100%{transform:scale(1);} }
+
+  /* ---------- hero ---------- */
+  .hero{padding:64px 0 40px;}
+  .hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:48px; align-items:center;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--tomate); margin-bottom:14px; display:inline-block;
+  }
+  .hero h1{font-size:52px; line-height:1.05; letter-spacing:-0.01em;}
+  .hero h1 em{font-style:italic; color:var(--verde-hoja);}
+  .hero p.lead{margin:22px 0 30px; font-size:17px; color:#4a463c; max-width:440px;}
+  .hero-ctas{display:flex; gap:14px; flex-wrap:nowrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    border-radius:999px; padding:14px 26px; font-size:15px; font-weight:600;
+    text-decoration:none; cursor:pointer; border:2px solid transparent; transition:transform .15s ease;
+  }
+  .btn:active{transform:scale(0.97);}
+  .btn-primary{background:var(--tomate); color:#fff;}
+  .btn-primary:hover{background:#a8390c;}
+  .btn-outline{background:transparent; border-color:var(--verde-oscuro); color:var(--verde-oscuro);}
+  .btn-outline:hover{background:var(--verde-oscuro); color:var(--papel);}
+
+  .crate-wrap{position:relative;}
+  .crate-wrap svg{width:100%; height:auto;}
+  .sway{transform-origin:50% 90%; animation:sway 4.5s ease-in-out infinite;}
+  .sway.d2{animation-delay:.4s;}
+  .sway.d3{animation-delay:.8s;}
+  .sway.d4{animation-delay:1.2s;}
+  @keyframes sway{ 0%,100%{transform:rotate(-1.2deg);} 50%{transform:rotate(1.4deg);} }
+
+  .info-strip{
+    display:flex; gap:0; margin-top:56px; border-top:1px solid rgba(36,56,33,0.15);
+    border-bottom:1px solid rgba(36,56,33,0.15);
+  }
+  .info-strip div{
+    flex:1; padding:18px 22px; font-size:13px; color:#4a463c;
+    border-left:1px solid rgba(36,56,33,0.15);
+  }
+  .info-strip div:first-child{border-left:none;}
+  .info-strip strong{display:block; color:var(--verde-oscuro); font-family:'Fraunces',serif; font-size:15px; font-weight:600; margin-bottom:2px;}
+
+  /* ---------- catalog ---------- */
+  .section-head{display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:36px; flex-wrap:wrap; gap:12px;}
+  .section-head h2{font-size:32px;}
+  .section-head p{color:#4a463c; font-size:14px; margin-top:6px;}
+
+  .grid{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:22px;}
+
+  .card{
+    background:var(--papel); border-radius:14px; padding:22px 20px 20px;
+    position:relative; border:1px solid rgba(36,56,33,0.10);
+    display:flex; flex-direction:column; align-items:center; text-align:center;
+    box-shadow:0 10px 18px -14px var(--sombra);
+  }
+  .card .icon-wrap{width:88px; height:88px; margin-bottom:14px;}
+  .card .icon-wrap svg{width:100%; height:100%;}
+  .card h3{font-size:17px; margin-bottom:2px;}
+  .card .unit{font-size:12px; color:#6b6656; margin-bottom:12px;}
+
+  .price-tag{
+    background:var(--crema);
+    border:1px solid rgba(36,56,33,0.18);
+    border-radius:6px;
+    padding:6px 12px;
+    font-size:15px;
+    color:var(--verde-oscuro);
+    position:relative;
+    margin-bottom:16px;
+  }
+  .price-tag::before{
+    content:"";
+    position:absolute; top:-9px; left:50%; transform:translateX(-50%) rotate(-4deg);
+    width:22px; height:9px; border:1px solid var(--twine); border-bottom:none; border-radius:3px 3px 0 0;
+  }
+
+  .stepper{display:flex; align-items:center; gap:0; margin-top:auto; width:100%;}
+  .qty-controls{
+    display:flex; align-items:center; justify-content:center; gap:14px;
+    background:var(--crema); border-radius:999px; padding:6px 8px; width:100%;
+  }
+  .qty-controls button{
+    width:26px; height:26px; border-radius:50%; border:1px solid var(--verde-oscuro);
+    background:transparent; color:var(--verde-oscuro); font-size:15px; line-height:1; cursor:pointer;
+  }
+  .qty-controls button:hover{background:var(--verde-oscuro); color:#fff;}
+  .qty-controls .qty-val{min-width:20px; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:14px;}
+
+  .add-btn{
+    margin-top:10px; width:100%; background:var(--verde-hoja); color:#fff; border:none;
+    border-radius:999px; padding:11px; font-size:14px; font-weight:600; cursor:pointer;
+  }
+  .add-btn:hover{background:var(--verde-oscuro);}
+  .add-btn.added{background:var(--verde-oscuro);}
+
+  /* ---------- how it works ---------- */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:8px;}
+  .step-card{
+    background:transparent; border-top:2px solid var(--verde-hoja); padding-top:16px;
+  }
+  .step-card .num{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--tomate); font-weight:600;}
+  .step-card h3{font-size:18px; margin:8px 0 8px;}
+  .step-card p{font-size:14px; color:#4a463c; margin:0;}
+
+  .note-box{
+    margin-top:44px; background:var(--verde-oscuro); color:var(--papel);
+    border-radius:16px; padding:26px 30px; display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+  }
+  .note-box svg{width:34px; height:34px; flex-shrink:0;}
+  .note-box p{margin:0; font-size:14px; line-height:1.55;}
+  .note-box strong{color:var(--zanahoria);}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--verde-oscuro); color:var(--verde-claro); padding:48px 0 28px;}
+  .foot-grid{display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:32px;}
+  footer h4{font-family:'Fraunces',serif; color:var(--papel); font-size:17px; margin:0 0 12px;}
+  footer p, footer li{font-size:13px; line-height:1.7; color:var(--verde-claro);}
+  footer ul{list-style:none; padding:0; margin:0;}
+  .foot-bottom{
+    margin-top:36px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.12);
+    font-size:12px; color:#8fa17f; text-align:center;
+  }
+
+  /* ---------- cart drawer ---------- */
+  .overlay{
+    position:fixed; inset:0; background:rgba(35,31,24,0.45);
+    opacity:0; pointer-events:none; transition:opacity .25s ease; z-index:90;
+  }
+  .overlay.open{opacity:1; pointer-events:auto;}
+
+  .drawer{
+    position:fixed; top:0; right:0; height:100%; width:400px; max-width:92vw;
+    background:var(--crema); z-index:95; box-shadow:-12px 0 30px rgba(0,0,0,0.15);
+    transform:translateX(100%); transition:transform .3s ease;
+    display:flex; flex-direction:column;
+  }
+  .drawer.open{transform:translateX(0);}
+  .drawer-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 24px; border-bottom:1px solid rgba(36,56,33,0.15);
+  }
+  .drawer-head h2{font-size:22px;}
+  .close-btn{
+    background:none; border:none; cursor:pointer; font-size:22px; color:var(--verde-oscuro);
+    width:32px; height:32px; border-radius:50%;
+  }
+  .close-btn:hover{background:rgba(36,56,33,0.08);}
+
+  .drawer-body{flex:1; overflow-y:auto; padding:18px 24px;}
+  .empty-cart{text-align:center; padding:60px 10px; color:#6b6656;}
+  .empty-cart svg{width:70px; height:70px; margin-bottom:14px; opacity:.7;}
+
+  .cart-line{
+    display:flex; align-items:center; gap:12px; padding:14px 0;
+    border-bottom:1px solid rgba(36,56,33,0.10);
+  }
+  .cart-line .ic{width:44px; height:44px; flex-shrink:0;}
+  .cart-line .ic svg{width:100%; height:100%;}
+  .cart-line .cl-name{font-size:14px; font-weight:600; color:var(--verde-oscuro);}
+  .cart-line .cl-unit{font-size:12px; color:#6b6656;}
+  .cart-line .cl-right{margin-left:auto; text-align:right;}
+  .cart-line .cl-price{font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600;}
+  .mini-qty{display:flex; align-items:center; gap:8px; margin-top:6px;}
+  .mini-qty button{
+    width:20px; height:20px; border-radius:50%; border:1px solid var(--verde-oscuro); background:none;
+    color:var(--verde-oscuro); font-size:12px; cursor:pointer; line-height:1;
+  }
+  .mini-qty span{font-family:'IBM Plex Mono',monospace; font-size:12px; min-width:14px; text-align:center;}
+
+  .drawer-foot{border-top:1px solid rgba(36,56,33,0.15); padding:20px 24px 24px;}
+  .subtotal-row{display:flex; justify-content:space-between; font-size:15px; margin-bottom:6px;}
+  .subtotal-row strong{font-family:'IBM Plex Mono',monospace;}
+  .subtotal-note{font-size:12px; color:#6b6656; margin-bottom:16px;}
+  .checkout-btn{
+    width:100%; background:var(--tomate); color:#fff; border:none; border-radius:999px;
+    padding:15px; font-size:15px; font-weight:600; cursor:pointer;
+  }
+  .checkout-btn:hover{background:#a8390c;}
+  .checkout-btn:disabled{background:#c9c3ae; cursor:not-allowed;}
+
+  /* ---------- checkout form ---------- */
+  .form-group{margin-bottom:16px;}
+  .form-group label{display:block; font-size:13px; font-weight:500; color:var(--verde-oscuro); margin-bottom:6px;}
+  .form-group input, .form-group textarea, .form-group select{
+    width:100%; border:1px solid rgba(36,56,33,0.25); border-radius:8px; padding:10px 12px;
+    font-family:'Work Sans',sans-serif; font-size:14px; background:#fff; color:var(--carbon);
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus{
+    outline:2px solid var(--verde-hoja); outline-offset:1px;
+  }
+  .field-error{color:var(--tomate); font-size:12px; margin-top:5px; display:none;}
+  .field-error.show{display:block;}
+  .radio-row{display:flex; gap:16px; margin-bottom:16px;}
+  .radio-opt{display:flex; align-items:center; gap:6px; font-size:14px;}
+
+  .back-link{background:none; border:none; color:var(--verde-hoja); font-size:13px; cursor:pointer; padding:0; margin-bottom:14px; display:inline-flex; align-items:center; gap:4px;}
+
+  /* ---------- confirmation ---------- */
+  .confirm-box{text-align:center; padding:20px 6px;}
+  .confirm-box svg{width:60px; height:60px; margin-bottom:16px;}
+  .order-num{
+    font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--tomate);
+    background:var(--papel); border:1px dashed var(--tomate); border-radius:8px; padding:10px; margin:14px 0 18px;
+  }
+  .confirm-box p{font-size:13px; color:#4a463c; line-height:1.6;}
+  .wa-btn{
+    display:inline-flex; align-items:center; gap:8px; background:#25D366; color:#fff; text-decoration:none;
+    border-radius:999px; padding:13px 22px; font-size:14px; font-weight:600; margin-top:14px;
+  }
+  .wa-btn:hover{background:#1ebb59;}
+
+  @media (max-width: 880px){
+    .hero-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr; gap:26px;}
+    .steps{grid-template-columns:1fr;}
+    .info-strip{flex-wrap:wrap;}
+    .info-strip div{flex:1 1 50%; border-left:none; border-top:1px solid rgba(36,56,33,0.15);}
+    nav{display:none;}
+    .hero h1{font-size:38px;}
+    .hero-ctas{gap:8px;}
+    .hero-ctas .btn{padding:11px 12px; font-size:12.5px; gap:5px; flex:1 1 0; justify-content:center; white-space:nowrap;}
+    .grid{grid-template-columns:repeat(3, minmax(0,1fr)); gap:12px;}
+    .card{padding:16px 10px 14px;}
+    .card .icon-wrap{width:64px; height:64px; margin-bottom:8px;}
+    .card h3{font-size:14px;}
+    .card .unit{font-size:11px; margin-bottom:8px;}
+    .price-tag{font-size:13px; padding:5px 9px; margin-bottom:10px;}
+    .qty-controls{padding:4px 4px; gap:8px;}
+    .add-btn{font-size:12px; padding:9px;}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+
+<symbol id="veg-tomate" viewBox="0 0 100 100">
+  <circle cx="50" cy="58" r="32" fill="#C1440E"/>
+  <path d="M50 26 C45 30 40 24 35 27 C40 20 48 20 50 26 C52 20 60 20 65 27 C60 24 55 30 50 26 Z" fill="#5C8A3A"/>
+  <ellipse cx="38" cy="46" rx="7" ry="5" fill="#DE8A24" opacity="0.35"/>
+</symbol>
+
+<symbol id="veg-lechuga" viewBox="0 0 100 100">
+  <path d="M50 20 C70 22 82 38 80 55 C78 72 62 82 50 82 C38 82 22 72 20 55 C18 38 30 22 50 20 Z" fill="#5C8A3A"/>
+  <path d="M50 30 C64 32 72 44 71 55 C70 68 58 74 50 74 C42 74 30 68 29 55 C28 44 36 32 50 30 Z" fill="#7BAD4E"/>
+  <path d="M50 40 C58 41 63 48 62 55 C61 63 55 66 50 66 C45 66 39 63 38 55 C37 48 42 41 50 40 Z" fill="#9CC46A"/>
+</symbol>
+
+<symbol id="veg-zanahoria" viewBox="0 0 100 100">
+  <path d="M50 30 L64 84 C65 90 55 92 52 86 L38 32 Z" fill="#DE8A24"/>
+  <path d="M43 30 L57 30 L52 82 C51.4 84.5 48.6 84.5 48 82 Z" fill="#E9A34C"/>
+  <path d="M50 30 C46 20 40 18 34 22 C40 16 48 16 50 24 C52 16 60 16 66 22 C60 18 54 20 50 30 Z" fill="#5C8A3A"/>
+</symbol>
+
+<symbol id="veg-papa" viewBox="0 0 100 100">
+  <path d="M28 45 C22 55 24 68 34 74 C44 80 62 80 72 72 C82 64 80 48 70 40 C60 32 44 30 34 34 C28 37 30 40 28 45 Z" fill="#B98650"/>
+  <circle cx="42" cy="52" r="3" fill="#8C6538"/>
+  <circle cx="60" cy="46" r="3" fill="#8C6538"/>
+  <circle cx="56" cy="64" r="3" fill="#8C6538"/>
+</symbol>
+
+<symbol id="veg-cebolla" viewBox="0 0 100 100">
+  <path d="M50 28 C66 30 76 44 74 58 C72 74 62 84 50 84 C38 84 28 74 26 58 C24 44 34 30 50 28 Z" fill="#8B5FA8"/>
+  <path d="M50 28 C58 29 64 36 63 44 C55 42 45 42 37 44 C36 36 42 29 50 28 Z" fill="#B189C9"/>
+  <path d="M50 20 C50 24 50 26 50 28" stroke="#5C8A3A" stroke-width="3" stroke-linecap="round"/>
+  <path d="M46 84 L44 92 M50 84 L50 92 M54 84 L56 92" stroke="#D9C79E" stroke-width="2" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="veg-zapallo" viewBox="0 0 100 100">
+  <path d="M50 32 C68 32 80 46 80 60 C80 74 66 82 50 82 C34 82 20 74 20 60 C20 46 32 32 50 32 Z" fill="#DE8A24"/>
+  <path d="M35 34 C38 50 38 68 35 80 M50 32 C50 50 50 68 50 82 M65 34 C62 50 62 68 65 80" stroke="#C1440E" stroke-width="2" opacity="0.45" fill="none"/>
+  <path d="M50 32 L50 20" stroke="#5C8A3A" stroke-width="4" stroke-linecap="round"/>
+  <path d="M50 22 C56 18 60 20 62 24 C58 22 54 24 50 28" fill="#5C8A3A"/>
+</symbol>
+
+<symbol id="veg-berenjena" viewBox="0 0 100 100">
+  <path d="M46 30 C34 34 26 48 30 62 C34 78 48 84 58 78 C70 71 72 54 64 42 C58 34 52 28 46 30 Z" fill="#5B3A73"/>
+  <ellipse cx="42" cy="42" rx="8" ry="5" fill="#8563A0" opacity="0.5"/>
+  <path d="M46 30 C42 24 34 22 28 26 C34 20 44 18 48 24 C52 18 60 18 64 24 C58 22 52 24 48 30 Z" fill="#5C8A3A"/>
+</symbol>
+
+<symbol id="veg-morron" viewBox="0 0 100 100">
+  <path d="M50 32 C64 30 76 40 76 54 C76 70 64 82 50 80 C38 82 26 70 26 56 C26 42 38 32 50 32 Z" fill="#C1440E"/>
+  <path d="M50 32 C55 32 60 36 60 42 C56 40 52 40 50 42 C48 40 44 40 40 42 C40 36 45 32 50 32 Z" fill="#DE8A24" opacity="0.7"/>
+  <path d="M50 32 L50 22 M50 24 C54 20 58 20 60 24 C56 22 52 24 50 28" stroke="#5C8A3A" stroke-width="3" fill="#5C8A3A" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="veg-choclo" viewBox="0 0 100 100">
+  <path d="M42 24 C36 40 36 66 44 82 C50 88 58 84 60 76 C64 60 62 36 56 22 C52 18 46 18 42 24 Z" fill="#E9C24C"/>
+  <path d="M46 30 L46 78 M52 28 L52 80 M56 34 L56 76" stroke="#C79A2A" stroke-width="2" opacity="0.5"/>
+  <path d="M40 26 C30 22 22 28 20 38 C28 32 34 32 40 34 Z" fill="#5C8A3A"/>
+  <path d="M58 24 C68 18 78 24 80 34 C72 30 66 30 58 32 Z" fill="#7BAD4E"/>
+</symbol>
+
+<symbol id="veg-batata" viewBox="0 0 100 100">
+  <path d="M26 50 C22 62 28 74 40 76 C52 78 62 72 74 62 C82 54 78 42 68 38 C56 34 42 34 32 40 C28 42 28 46 26 50 Z" fill="#A84A32"/>
+  <path d="M34 46 C44 44 56 44 64 48" stroke="#8C3A26" stroke-width="2" opacity="0.5" fill="none"/>
+</symbol>
+
+<symbol id="veg-acelga" viewBox="0 0 100 100">
+  <path d="M50 20 C46 34 44 50 46 66 C47 74 49 80 50 84" stroke="#E7CBD6" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <path d="M50 22 C34 26 26 40 30 54 C34 66 44 70 50 66" fill="#5C8A3A"/>
+  <path d="M50 22 C66 26 74 40 70 54 C66 66 56 70 50 66" fill="#7BAD4E"/>
+</symbol>
+
+<symbol id="veg-limon" viewBox="0 0 100 100">
+  <path d="M50 30 C64 30 74 42 74 56 C74 70 64 80 50 80 C36 80 26 70 26 56 C26 42 36 30 50 30 Z" fill="#E9C24C"/>
+  <path d="M50 30 C52 30 54 32 54 34 C54 36 52 38 50 38" fill="#DE8A24"/>
+  <path d="M50 72 C52 72 54 74 54 76 C54 78 52 80 50 80" fill="#DE8A24"/>
+  <ellipse cx="42" cy="46" rx="8" ry="5" fill="#F2D875" opacity="0.6"/>
+</symbol>
+
+<symbol id="cong-papas" viewBox="0 0 100 100">
+  <path d="M28 34 L72 34 L66 84 C65 88 61 90 57 90 L43 90 C39 90 35 88 34 84 Z" fill="#DCEAF3"/>
+  <path d="M28 34 L72 34 L70 44 L30 44 Z" fill="#7FA8C9"/>
+  <rect x="38" y="52" width="6" height="26" rx="2" fill="#DE8A24"/>
+  <rect x="47" y="48" width="6" height="30" rx="2" fill="#E9A34C"/>
+  <rect x="56" y="52" width="6" height="26" rx="2" fill="#DE8A24"/>
+  <path d="M74 26 L78 26 M76 24 L76 28 M79 30 L83 30 M81 28 L81 32" stroke="#3E6E93" stroke-width="2" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="cong-empanadas" viewBox="0 0 100 100">
+  <path d="M18 58 C18 40 34 28 50 28 C66 28 82 40 82 58 C68 62 60 76 50 76 C40 76 32 62 18 58 Z" fill="#E9C24C"/>
+  <path d="M24 56 C27 53 30 53 33 56 M34 60 C37 57 40 57 43 60 M44 64 C47 61 50 61 53 64 M54 66 C57 63 60 63 63 66 M64 64 C67 61 70 61 73 64" stroke="#C79A2A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <path d="M74 24 L78 24 M76 22 L76 26 M80 28 L84 28 M82 26 L82 30" stroke="#3E6E93" stroke-width="2" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="cong-tarta" viewBox="0 0 100 100">
+  <path d="M50 22 L82 78 L18 78 Z" fill="#E9C24C"/>
+  <path d="M50 22 L82 78 L18 78 Z" fill="#7BAD4E" opacity="0" />
+  <path d="M28 68 L72 68 L50 30 Z" fill="#5C8A3A"/>
+  <path d="M34 68 L66 68 L50 40 Z" fill="#7BAD4E"/>
+  <rect x="14" y="76" width="72" height="8" rx="3" fill="#C79A2A"/>
+  <path d="M14 22 L18 22 M16 20 L16 24 M20 26 L24 26 M22 24 L22 28" stroke="#3E6E93" stroke-width="2" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="cong-medallon" viewBox="0 0 100 100">
+  <circle cx="50" cy="54" r="32" fill="#E9C88C"/>
+  <circle cx="38" cy="44" r="3" fill="#5C8A3A"/>
+  <circle cx="58" cy="40" r="3" fill="#DE8A24"/>
+  <circle cx="64" cy="58" r="3" fill="#5C8A3A"/>
+  <circle cx="44" cy="64" r="3" fill="#C1440E"/>
+  <circle cx="56" cy="66" r="3" fill="#5C8A3A"/>
+  <circle cx="34" cy="56" r="3" fill="#DE8A24"/>
+  <path d="M74 22 L78 22 M76 20 L76 24 M80 26 L84 26 M82 24 L82 28" stroke="#3E6E93" stroke-width="2" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="cong-milanesa" viewBox="0 0 100 100">
+  <ellipse cx="50" cy="56" rx="34" ry="26" fill="#D9A85C"/>
+  <ellipse cx="50" cy="56" rx="34" ry="26" fill="none" stroke="#B98235" stroke-width="2" stroke-dasharray="3 4"/>
+  <path d="M74 24 L78 24 M76 22 L76 26 M80 28 L84 28 M82 26 L82 30" stroke="#3E6E93" stroke-width="2" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="cong-helado" viewBox="0 0 100 100">
+  <path d="M34 40 L66 40 L58 82 C57 86 43 86 42 82 Z" fill="#F2D875"/>
+  <circle cx="50" cy="34" r="20" fill="#F6E9A8"/>
+  <path d="M74 20 L78 20 M76 18 L76 22 M80 24 L84 24 M82 22 L82 26" stroke="#3E6E93" stroke-width="2" stroke-linecap="round"/>
+</symbol>
+
+</defs>
+</svg>
+
+<header>
+  <div class="headbar">
+    <button type="button" class="logo" id="logoHomeBtn" aria-label="Volver a la página de inicio" style="background:none; border:none; cursor:pointer; padding:0;">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><use href="#veg-zanahoria"></use></svg>
+      <div class="logo-text">La Huerta<span>de Doña Rosa</span></div>
+    </button>
+    <nav>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#como-funciona">Cómo pedir</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <button class="cart-btn" id="openCartBtn" aria-label="Abrir carrito">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+      Mi pedido
+      <span class="cart-count tag-font" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow tag-font">Cosecha del día · Villa Verde</span>
+        <h1>Verdura fresca,<br>directo del <em>cajón</em><br>a tu mesa.</h1>
+        <p class="lead">Elegí lo que necesitás, armá tu pedido y coordinamos la entrega o el retiro por el local. Vos pagás cuando lo recibís — acá no se cobra online.</p>
+        <div class="hero-ctas">
+          <a href="#catalogo" class="btn btn-primary">Ver el cajón</a>
+          <a href="#congelados" class="btn btn-outline">Ver los congelados</a>
+          <a href="#como-funciona" class="btn btn-outline" id="cajonDiaBtn">Cajón del día</a>
+        </div>
+      </div>
+      <div class="crate-wrap">
+        <svg viewBox="0 0 420 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de un cajón de madera con verduras frescas">
+          <path d="M40 190 L380 190 L360 320 L60 320 Z" fill="#B99B6B"/>
+          <path d="M40 190 L380 190 L380 210 L40 210 Z" fill="#A9855A"/>
+          <rect x="55" y="205" width="14" height="105" fill="#8C6E45" opacity="0.55"/>
+          <rect x="195" y="205" width="14" height="112" fill="#8C6E45" opacity="0.55"/>
+          <rect x="335" y="205" width="14" height="105" fill="#8C6E45" opacity="0.55"/>
+          <g class="sway">
+            <use href="#veg-lechuga" x="30" y="70" width="110" height="110"></use>
+          </g>
+          <g class="sway d2">
+            <use href="#veg-tomate" x="150" y="60" width="95" height="95"></use>
+          </g>
+          <g class="sway d3">
+            <use href="#veg-berenjena" x="250" y="80" width="100" height="100"></use>
+          </g>
+          <g class="sway d4">
+            <use href="#veg-zanahoria" x="105" y="130" width="80" height="80" transform="rotate(-8 145 170)"></use>
+          </g>
+          <g class="sway">
+            <use href="#veg-morron" x="255" y="150" width="80" height="80"></use>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="info-strip">
+      <div><strong>Lun a sáb, 8 a 20 h</strong>Horario del local</div>
+      <div><strong>Retiro o envío al barrio</strong>Elegís al confirmar</div>
+      <div><strong>Pago al recibir</strong>Efectivo o transferencia</div>
+      <div><strong>Pedido mínimo $3.000</strong>Para envíos a domicilio</div>
+    </div>
+  </div>
+</section>
+
+<div id="belowHero" style="display:none;">
+
+<section id="catalogo">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>El cajón de hoy</h2>
+        <p>Precios por kilo. Sumá lo que necesites al pedido.</p>
+      </div>
+    </div>
+    <div class="grid" id="productGrid"></div>
+  </div>
+</section>
+
+<section id="congelados" style="background:var(--papel);">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow tag-font">Freezer del local</span>
+        <h2>Congelados</h2>
+        <p>Listos para guardar y usar cuando quieras: masas, medallones y algo dulce para el postre.</p>
+      </div>
+    </div>
+    <div class="grid" id="frozenGrid"></div>
+  </div>
+</section>
+
+<section id="como-funciona" style="background:var(--papel);">
+  <div class="wrap">
+    <div class="section-head" id="specialsBlock" style="display:none; flex-direction:column; align-items:flex-start;">
+      <div>
+        <h2>Cajón del día</h2>
+        <p>Productos especiales de hoy, disponibles solo lunes, miércoles y viernes.</p>
+      </div>
+    </div>
+    <div class="grid" id="specialsGrid" style="display:none; margin-bottom:56px;"></div>
+    <div class="section-head">
+      <div>
+        <h2>Cómo pedir</h2>
+        <p>Tres pasos, sin vueltas y sin pagos online.</p>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step-card">
+        <span class="num tag-font">01</span>
+        <h3>Armá tu cajón</h3>
+        <p>Sumá los productos que quieras desde el catálogo y ajustá las cantidades.</p>
+      </div>
+      <div class="step-card">
+        <span class="num tag-font">02</span>
+        <h3>Confirmá tus datos</h3>
+        <p>Nombre, teléfono y si preferís retirar por el local o que te lo llevemos.</p>
+      </div>
+      <div class="step-card">
+        <span class="num tag-font">03</span>
+        <h3>Coordinamos y pagás al recibir</h3>
+        <p>Te confirmamos por WhatsApp el horario. El pago es en efectivo o transferencia al entregar.</p>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+      <p><strong>Esto no es una tienda con pago online:</strong> el pedido queda reservado a tu nombre y el pago se hace en persona, en efectivo o transferencia, al momento de la entrega o el retiro.</p>
+    </div>
+  </div>
+</section>
+
+<footer id="contacto">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>La Huerta de Doña Rosa</h4>
+        <p>Verdulería de barrio. Compramos directo al mercado central todas las mañanas para que llegue fresco a tu casa.</p>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li>Av. Rivadavia 1234, CABA</li>
+          <li>WhatsApp: 11 5555-5555</li>
+          <li>Lun a sáb, 8 a 20 h</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Antes de pedir</h4>
+        <ul>
+          <li>Envío gratis desde $6.000</li>
+          <li>Pedido mínimo para envío: $3.000</li>
+          <li>Pago solo al recibir</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">Hecho con cariño de verdulero. Este sitio no procesa pagos.</div>
+  </div>
+</footer>
+
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="drawer" id="drawer" aria-label="Carrito de pedido">
+  <div id="drawerContent"></div>
+</aside>
+
+<script>
+
+  var STORE = {
+    name: "La Huerta de Doña Rosa",
+    whatsapp: "5491155555555",
+    address: "Av. Rivadavia 1234, CABA",
+    minDelivery: 3000
+  };
+
+  var PRODUCTS = [
+    { id:"tomate",    name:"Tomate",         unit:"kg",     price:2200, icon:"veg-tomate" },
+    { id:"lechuga",   name:"Lechuga",        unit:"unidad", price:900,  icon:"veg-lechuga" },
+    { id:"zanahoria", name:"Zanahoria",      unit:"kg",     price:1500, icon:"veg-zanahoria" },
+    { id:"papa",      name:"Papa",           unit:"kg",     price:1300, icon:"veg-papa" },
+    { id:"cebolla",   name:"Cebolla",        unit:"kg",     price:1600, icon:"veg-cebolla" },
+    { id:"zapallo",   name:"Zapallo",        unit:"kg",     price:1400, icon:"veg-zapallo" },
+    { id:"berenjena", name:"Berenjena",      unit:"kg",     price:1800, icon:"veg-berenjena" },
+    { id:"morron",    name:"Morrón rojo",    unit:"kg",     price:2600, icon:"veg-morron" },
+    { id:"choclo",    name:"Choclo",         unit:"unidad", price:700,  icon:"veg-choclo" },
+    { id:"batata",    name:"Batata",         unit:"kg",     price:1500, icon:"veg-batata" },
+    { id:"acelga",    name:"Acelga",         unit:"atado",  price:1100, icon:"veg-acelga" },
+    { id:"limon",     name:"Limón",          unit:"kg",     price:1900, icon:"veg-limon" }
+  ];
+
+  var FROZEN = [
+    { id:"papas-cong",     name:"Papas rústicas",       unit:"kg",     price:2400, icon:"cong-papas" },
+    { id:"empanadas",      name:"Empanadas de carne",   unit:"docena", price:5200, icon:"cong-empanadas" },
+    { id:"tarta-acelga",   name:"Tarta de acelga",      unit:"unidad", price:2800, icon:"cong-tarta" },
+    { id:"medallon-veg",   name:"Medallones de vegetales", unit:"x4",  price:2100, icon:"cong-medallon" },
+    { id:"milanesa-soja",  name:"Milanesas de soja",    unit:"x6",     price:2600, icon:"cong-milanesa" },
+    { id:"helado-agua",    name:"Helado de agua, limón", unit:"pote",  price:1900, icon:"cong-helado" }
+  ];
+
+  var SPECIALS = [
+    { id:"combo-salsa", name:"Combo para salsa",  unit:"combo", price:3200, icon:"veg-tomate" },
+    { id:"combo-guiso", name:"Combo para guiso",  unit:"combo", price:2900, icon:"veg-zapallo" },
+    { id:"combo-verde", name:"Combo verde",       unit:"combo", price:2500, icon:"veg-acelga" }
+  ];
+
+  var ALL_PRODUCTS = PRODUCTS.concat(FROZEN).concat(SPECIALS);
+
+  var cart = {};
+  var view = "cart";
+
+  function fmt(n){
+    return "$" + Math.round(n).toLocaleString("es-AR");
+  }
+
+  function productById(id){
+    for(var i=0;i<ALL_PRODUCTS.length;i++){ if(ALL_PRODUCTS[i].id===id) return ALL_PRODUCTS[i]; }
+    return null;
+  }
+
+  function cartCount(){
+    var c=0;
+    for(var id in cart){ c += cart[id]; }
+    return c;
+  }
+
+  function cartTotal(){
+    var t=0;
+    for(var id in cart){ t += cart[id] * productById(id).price; }
+    return t;
+  }
+
+  function renderGrid(list, containerId){
+    var grid = document.getElementById(containerId);
+    var html = "";
+    list.forEach(function(p){
+      var isKg = p.unit === "kg";
+      var startQty = isKg ? 1 : 0;
+      pendingQty[p.id] = startQty;
+      html += ''+
+        '<div class="card">'+
+          '<div class="icon-wrap"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#'+p.icon+'"></use></svg></div>'+
+          '<h3>'+p.name+'</h3>'+
+          '<div class="price-tag tag-font">'+fmt(p.price)+'</div>'+
+          '<div class="qty-controls">'+
+            '<button type="button" aria-label="Restar '+p.name+'" onclick="stepProduct(\''+p.id+'\',-1)">–</button>'+
+            '<span class="qty-val" id="qty-'+p.id+'">'+startQty+'</span>'+
+            '<button type="button" aria-label="Sumar '+p.name+'" onclick="stepProduct(\''+p.id+'\',1)">+</button>'+
+          '</div>'+
+          '<button type="button" class="add-btn" id="add-'+p.id+'" onclick="addToCart(\''+p.id+'\')">Agregar al pedido</button>'+
+        '</div>';
+    });
+    grid.innerHTML = html;
+  }
+
+  var pendingQty = {};
+
+  function stepProduct(id, delta){
+    var p = productById(id);
+    var minQty = (p.unit === "kg") ? 1 : 0;
+    var cur = pendingQty[id] || 0;
+    cur = Math.max(minQty, cur + delta);
+    pendingQty[id] = cur;
+    document.getElementById("qty-"+id).textContent = cur;
+  }
+
+  function addToCart(id){
+    var p = productById(id);
+    var minQty = (p.unit === "kg") ? 1 : 0;
+    var qty = pendingQty[id] || 0;
+    if(qty < 1){
+      var btn = document.getElementById("add-"+id);
+      btn.textContent = "Elegí una cantidad";
+      setTimeout(function(){ btn.textContent = "Agregar al pedido"; }, 1400);
+      return;
+    }
+    cart[id] = (cart[id] || 0) + qty;
+    pendingQty[id] = minQty;
+    document.getElementById("qty-"+id).textContent = minQty;
+    var btn = document.getElementById("add-"+id);
+    btn.classList.add("added");
+    var oldText = btn.textContent;
+    btn.textContent = "Agregado ✓".replace(" ✓","");
+    btn.textContent = "Agregado";
+    setTimeout(function(){ btn.classList.remove("added"); btn.textContent = "Agregar al pedido"; }, 1000);
+    updateCartCount(true);
+  }
+
+  function updateCartCount(bump){
+    var el = document.getElementById("cartCount");
+    el.textContent = cartCount();
+    if(bump){
+      el.classList.remove("bump");
+      void el.offsetWidth;
+      el.classList.add("bump");
+    }
+  }
+
+  function changeCartQty(id, delta){
+    cart[id] = (cart[id] || 0) + delta;
+    if(cart[id] <= 0) delete cart[id];
+    updateCartCount(false);
+    renderDrawer();
+  }
+
+  function renderDrawer(){
+    var content = document.getElementById("drawerContent");
+    if(view === "cart"){
+      content.innerHTML = cartView();
+    } else if(view === "checkout"){
+      content.innerHTML = checkoutView();
+      bindCheckoutForm();
+    } else if(view === "confirm"){
+      content.innerHTML = confirmView();
+    }
+  }
+
+  function cartView(){
+    var ids = Object.keys(cart);
+    var body = "";
+    if(ids.length === 0){
+      body = '<div class="empty-cart">'+
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>'+
+        '<p>Todavía no agregaste nada.<br>Elegí tus verduras del cajón de hoy.</p>'+
+      '</div>';
+    } else {
+      ids.forEach(function(id){
+        var p = productById(id);
+        var qty = cart[id];
+        body += '<div class="cart-line">'+
+          '<div class="ic"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#'+p.icon+'"></use></svg></div>'+
+          '<div>'+
+            '<div class="cl-name">'+p.name+'</div>'+
+            '<div class="cl-unit">'+fmt(p.price)+' / '+p.unit+'</div>'+
+            '<div class="mini-qty">'+
+              '<button type="button" aria-label="Restar" onclick="changeCartQty(\''+id+'\',-1)">–</button>'+
+              '<span>'+qty+' '+p.unit+'</span>'+
+              '<button type="button" aria-label="Sumar" onclick="changeCartQty(\''+id+'\',1)">+</button>'+
+            '</div>'+
+          '</div>'+
+          '<div class="cl-right"><div class="cl-price tag-font">'+fmt(p.price*qty)+'</div></div>'+
+        '</div>';
+      });
+    }
+
+    var total = cartTotal();
+    var disabled = ids.length === 0 ? "disabled" : "";
+
+    return ''+
+      '<div class="drawer-head"><h2>Tu pedido</h2><button class="close-btn" onclick="closeCart()" aria-label="Cerrar carrito">×</button></div>'+
+      '<div class="drawer-body">'+body+'</div>'+
+      '<div class="drawer-foot">'+
+        '<div class="subtotal-row"><span>Subtotal</span><strong class="tag-font">'+fmt(total)+'</strong></div>'+
+        '<div class="subtotal-note">Sin cargos ni pagos online. Confirmás y coordinamos por WhatsApp.</div>'+
+        '<button class="checkout-btn" '+disabled+' onclick="goCheckout()">Confirmar pedido</button>'+
+      '</div>';
+  }
+
+  function checkoutView(){
+    return ''+
+      '<div class="drawer-head"><h2>Tus datos</h2><button class="close-btn" onclick="closeCart()" aria-label="Cerrar carrito">×</button></div>'+
+      '<div class="drawer-body">'+
+        '<button type="button" class="back-link" onclick="goCart()">&larr; Volver al pedido</button>'+
+        '<form id="checkoutForm">'+
+          '<div class="form-group">'+
+            '<label for="ckName">Nombre y apellido</label>'+
+            '<input type="text" id="ckName" placeholder="Tu nombre">'+
+            '<div class="field-error" id="err-ckName">Ingresá tu nombre.</div>'+
+          '</div>'+
+          '<div class="form-group">'+
+            '<label for="ckPhone">Teléfono de contacto</label>'+
+            '<input type="tel" id="ckPhone" placeholder="11 1234-5678">'+
+            '<div class="field-error" id="err-ckPhone">Ingresá un teléfono.</div>'+
+          '</div>'+
+          '<div class="form-group">'+
+            '<label>Cómo lo recibís</label>'+
+            '<div class="radio-row">'+
+              '<label class="radio-opt"><input type="radio" name="ckMode" value="retiro" checked> Retiro en el local</label>'+
+              '<label class="radio-opt"><input type="radio" name="ckMode" value="envio"> Envío a domicilio</label>'+
+            '</div>'+
+          '</div>'+
+          '<div class="form-group" id="addressGroup" style="display:none;">'+
+            '<label for="ckAddress">Dirección de entrega</label>'+
+            '<input type="text" id="ckAddress" placeholder="Calle, número y barrio">'+
+            '<div class="field-error" id="err-ckAddress">Ingresá la dirección de entrega.</div>'+
+          '</div>'+
+          '<div class="form-group">'+
+            '<label for="ckNote">Notas para el pedido (opcional)</label>'+
+            '<textarea id="ckNote" rows="3" placeholder="Ej: si no hay tomate, cambiar por morrón"></textarea>'+
+          '</div>'+
+          '<button type="submit" class="checkout-btn">Enviar pedido por WhatsApp</button>'+
+        '</form>'+
+      '</div>';
+  }
+
+  function confirmView(){
+    var o = lastOrder;
+    return ''+
+      '<div class="drawer-head"><h2>Pedido enviado</h2><button class="close-btn" onclick="closeCart()" aria-label="Cerrar carrito">×</button></div>'+
+      '<div class="drawer-body">'+
+        '<div class="confirm-box">'+
+          '<svg viewBox="0 0 24 24" fill="none" stroke="#5C8A3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>'+
+          '<h3>¡Gracias, '+o.name+'!</h3>'+
+          '<p>Guardá este número de pedido. Te vamos a confirmar el horario por WhatsApp — el pago se hace al '+(o.mode==="envio"?"recibirlo":"retirarlo")+', en efectivo o transferencia.</p>'+
+          '<div class="order-num">'+o.code+'</div>'+
+          '<a class="wa-btn" href="'+o.waUrl+'" target="_blank" rel="noopener">Abrir WhatsApp con el resumen</a>'+
+        '</div>'+
+      '</div>'+
+      '<div class="drawer-foot">'+
+        '<button class="checkout-btn" onclick="resetOrder()">Hacer otro pedido</button>'+
+      '</div>';
+  }
+
+  var lastOrder = null;
+
+  function goCart(){ view = "cart"; renderDrawer(); }
+  function goCheckout(){ view = "checkout"; renderDrawer(); }
+
+  function bindCheckoutForm(){
+    var modeRadios = document.getElementsByName("ckMode");
+    var addressGroup = document.getElementById("addressGroup");
+    for(var i=0;i<modeRadios.length;i++){
+      modeRadios[i].addEventListener("change", function(){
+        var mode = document.querySelector('input[name="ckMode"]:checked').value;
+        addressGroup.style.display = mode === "envio" ? "block" : "none";
+      });
+    }
+    document.getElementById("checkoutForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      submitOrder();
+    });
+  }
+
+  function clearErrors(){
+    ["ckName","ckPhone","ckAddress"].forEach(function(id){
+      document.getElementById("err-"+id).classList.remove("show");
+    });
+  }
+
+  function submitOrder(){
+    clearErrors();
+    var name = document.getElementById("ckName").value.trim();
+    var phone = document.getElementById("ckPhone").value.trim();
+    var mode = document.querySelector('input[name="ckMode"]:checked').value;
+    var address = document.getElementById("ckAddress") ? document.getElementById("ckAddress").value.trim() : "";
+    var note = document.getElementById("ckNote").value.trim();
+    var valid = true;
+
+    if(name.length < 2){
+      document.getElementById("err-ckName").classList.add("show");
+      valid = false;
+    }
+    if(phone.length < 6){
+      document.getElementById("err-ckPhone").classList.add("show");
+      valid = false;
+    }
+    if(mode === "envio" && address.length < 4){
+      document.getElementById("err-ckAddress").classList.add("show");
+      valid = false;
+    }
+    if(!valid) return;
+
+    var total = cartTotal();
+    if(mode === "envio" && total < STORE.minDelivery){
+      alert("El pedido mínimo para envío a domicilio es " + fmt(STORE.minDelivery) + ". Sumá algún producto más o elegí retiro en el local.");
+      return;
+    }
+
+    var code = "HR-" + Date.now().toString().slice(-6);
+
+    var lines = ["Pedido " + code + " — " + STORE.name, ""];
+    Object.keys(cart).forEach(function(id){
+      var p = productById(id);
+      lines.push("• " + p.name + " x" + cart[id] + " " + p.unit + " — " + fmt(p.price * cart[id]));
+    });
+    lines.push("");
+    lines.push("Subtotal: " + fmt(total));
+    lines.push("Entrega: " + (mode === "envio" ? "envío a domicilio" : "retiro en el local"));
+    if(mode === "envio") lines.push("Dirección: " + address);
+    if(note) lines.push("Notas: " + note);
+    lines.push("");
+    lines.push("Nombre: " + name);
+    lines.push("Teléfono: " + phone);
+    lines.push("Pago al " + (mode === "envio" ? "recibir" : "retirar") + " (efectivo o transferencia).");
+
+    var text = lines.join("\n");
+    var waUrl = "https://wa.me/" + STORE.whatsapp + "?text=" + encodeURIComponent(text);
+
+    lastOrder = { code:code, name:name, mode:mode, waUrl:waUrl };
+    cart = {};
+    updateCartCount(false);
+    view = "confirm";
+    renderDrawer();
+    window.open(waUrl, "_blank");
+  }
+
+  function resetOrder(){
+    view = "cart";
+    renderDrawer();
+  }
+
+  function openCart(){
+    document.getElementById("drawer").classList.add("open");
+    document.getElementById("overlay").classList.add("open");
+    renderDrawer();
+  }
+  function closeCart(){
+    document.getElementById("drawer").classList.remove("open");
+    document.getElementById("overlay").classList.remove("open");
+  }
+
+  document.getElementById("openCartBtn").addEventListener("click", openCart);
+  document.getElementById("overlay").addEventListener("click", closeCart);
+
+  renderGrid(PRODUCTS, "productGrid");
+  renderGrid(FROZEN, "frozenGrid");
+  updateCartCount(false);
+  renderDrawer();
+
+  /* Cajón del día: combos especiales visibles solo lunes (1), miércoles (3) y viernes (5) */
+  function initCajonDelDia(){
+    var hoy = new Date().getDay();
+    var esDiaEspecial = (hoy === 1 || hoy === 3 || hoy === 5);
+    var block = document.getElementById("specialsBlock");
+    var grid = document.getElementById("specialsGrid");
+    var btn = document.getElementById("cajonDiaBtn");
+    if(esDiaEspecial){
+      renderGrid(SPECIALS, "specialsGrid");
+      block.style.display = "flex";
+      grid.style.display = "grid";
+      btn.style.display = "";
+    } else {
+      block.style.display = "none";
+      grid.style.display = "none";
+      btn.style.display = "none";
+    }
+  }
+  initCajonDelDia();
+
+  /* El scroll funciona siempre normal. Lo que no existe hasta tocar un botón/link
+     es el contenido de abajo (cajón, congelados, cómo pedir, contacto): por eso
+     no se puede "bajar de largo" desde la portada. Y el cajón y los congelados
+     son como dos páginas separadas: nunca se pasa de una a la otra scrolleando,
+     solo tocando "Ver el cajón de hoy" o "Ver los congelados". Para volver a la
+     portada, la única forma es tocar el logo de arriba. */
+  var currentProductPage = "catalogo";
+
+  function showProductPage(pageId){
+    document.getElementById("hero").style.display = "none";
+    document.getElementById("belowHero").style.display = "block";
+    document.getElementById("catalogo").style.display = (pageId === "catalogo") ? "" : "none";
+    document.getElementById("congelados").style.display = (pageId === "congelados") ? "" : "none";
+    currentProductPage = pageId;
+    window.scrollTo(0, 0);
+    var target = document.getElementById(pageId);
+    if(target) target.scrollIntoView({ behavior:"smooth", block:"start" });
+  }
+
+  function goToAnchor(targetId){
+    if(targetId === "catalogo" || targetId === "congelados"){
+      showProductPage(targetId);
+      return;
+    }
+    if(document.getElementById("hero").style.display !== "none"){
+      showProductPage(currentProductPage);
+    }
+    var target = document.getElementById(targetId);
+    if(target) target.scrollIntoView({ behavior:"smooth", block:"start" });
+  }
+
+  function goHome(){
+    document.getElementById("belowHero").style.display = "none";
+    document.getElementById("hero").style.display = "";
+    window.scrollTo(0, 0);
+  }
+
+  document.querySelectorAll('nav a[href^="#"], .hero-ctas a[href^="#"]').forEach(function(link){
+    link.addEventListener("click", function(e){
+      e.preventDefault();
+      goToAnchor(link.getAttribute("href").slice(1));
+    });
+  });
+
+  document.getElementById("logoHomeBtn").addEventListener("click", goHome);
+
+</script>
+
+</body>
+</html>
